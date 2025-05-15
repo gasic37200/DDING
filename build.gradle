@@ -1,0 +1,55 @@
+plugins {
+	id 'java'
+	id 'org.springframework.boot' version '3.4.4'
+	id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'com.printf'
+version = '0.0.1-SNAPSHOT'
+
+java {
+	toolchain {
+		languageVersion = JavaLanguageVersion.of(17)
+	}
+}
+
+configurations {
+	compileOnly {
+		dependencies {
+			implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' // 타임리프(페이지 자동 설정)
+			implementation 'org.springframework.boot:spring-boot-starter-web' // 스프링 웹
+			implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.4' // 마이바티스(SQL문 간결화)
+			compileOnly 'org.projectlombok:lombok' // 롬복(개발 도구)
+			annotationProcessor 'org.projectlombok:lombok'
+			testImplementation 'org.springframework.boot:spring-boot-starter-test'
+			testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+			runtimeOnly 'com.mysql:mysql-connector-j' // MySQL 드라이버
+			implementation 'org.springframework.boot:spring-boot-starter-security' // 스프링 시큐리티
+
+			// JWT 의존성
+			implementation 'io.jsonwebtoken:jjwt-api:0.11.5'  // JWT 생성 및 검증을 위한 라이브러리
+			runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+			runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5' // JSON 변환
+
+			// OAuth2 클라이언트 의존성 (OAuth2 로그인 사용)
+			implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+			// Spring Security OAuth2 지원
+			implementation 'org.springframework.security:spring-security-oauth2-jose' // OAuth2 관련
+			implementation 'org.springframework.security:spring-security-oauth2-client'  // OAuth2 클라이언트 지원
+			implementation 'org.springframework.security:spring-security-oauth2-resource-server' // OAuth2 리소스 서버
+			implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+			// secretKey를 yml이 아닌 .evn으로 숨겨 보안성 높이기 위한 라이브러리
+			implementation 'io.github.cdimascio:java-dotenv:5.2.2'
+		}
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+
+tasks.named('test') {
+	useJUnitPlatform()
+}

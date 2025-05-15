@@ -1,0 +1,88 @@
+/*  왼쪽 영역 (달력 포함) */
+.left-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*  달력 전체 박스 */
+.calendar-container {
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    width: 480px;
+    height: 500px;
+    overflow: hidden;
+}
+
+/*  달력 헤더 (월/년 + 버튼) */
+.calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/*  달력 표 */
+.calendar {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    table-layout: fixed;
+}
+
+.calendar th,
+.calendar td {
+    padding: 1rem 0.5rem;
+    width: 14.28%;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.2s;
+    line-height: 1.5;
+}
+
+.calendar td:hover {
+    background-color: #e0f2fe;
+}
+
+.calendar .today {
+    background-color: #fef9c3;
+    font-weight: bold;
+}
+
+.calendar .selected {
+    background-color: #bfdbfe;
+    font-weight: bold;
+}
+
+/*  이전 / 다음 달 이동 버튼 */
+#prev-month,
+#next-month {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: #3b82f6;
+    cursor: pointer;
+    padding: 0.25rem 0.75rem;
+    transition: color 0.2s;
+}
+
+#prev-month:hover,
+#next-month:hover {
+    color: #2563eb;
+}
+
+/*  달력 아래 버튼 그룹 */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.button-group .btn {
+    width: 150px;
+    text-align: center;
+}

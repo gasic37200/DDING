@@ -1,0 +1,214 @@
+/* ===========================
+   기본 모달 배경 스타일
+=========================== */
+.modal {
+    display: none; /* 처음엔 숨김 상태 */
+    position: fixed; /* 화면 전체를 덮도록 고정 위치 */
+    z-index: 1000; /* 가장 앞쪽에 위치 */
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* 반투명한 검정 배경 */
+
+    /* 중앙 정렬을 위한 핵심 코드 */
+    /*display: flex;*/
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===========================
+   모달 내용 스타일
+=========================== */
+.modal-content {
+    background-color: #fff; /* 흰 배경 */
+    padding: 30px 40px; /* 내부 여백 */
+    border-radius: 10px; /* 둥근 테두리 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* 그림자 효과 */
+    width: 90%;
+    max-width: 400px; /* 최대 너비 제한 */
+    animation: fadeIn 0.3s ease-out; /* 등장 애니메이션 */
+    position: relative; /* 닫기 버튼 위치 지정용 */
+}
+
+/* ===========================
+   닫기(X) 버튼 스타일
+=========================== */
+.close {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #000;
+}
+
+/* ===========================
+   입력 필드 스타일
+=========================== */
+.modal-content input[type="text"],
+.modal-content input[type="password"] {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    box-sizing: border-box;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+/* ===========================
+   로그인 버튼
+=========================== */
+.login-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+.login-button:hover {
+    background-color: #45a049;
+}
+
+/* ===========================
+   카카오 / 이메일 로그인 버튼
+=========================== */
+.kakao-login,
+.email-login {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.kakao-login {
+    background-color: #FEE500; /* 카카오 컬러 */
+    color: #3C1E1E;
+}
+
+.email-login {
+    background-color: #007BFF; /* 파란색 이메일 로그인 */
+    color: white;
+}
+
+/* ===========================
+   회원가입 안내 문구
+=========================== */
+.signup-text {
+    margin-top: 20px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.signup-text button {
+    background: none;
+    border: none;
+    color: #007BFF;
+    cursor: pointer;
+    text-decoration: underline;
+    padding: 0;
+    font-size: 14px;
+}
+
+.signup-text button:hover {
+    color: #0056b3;
+}
+
+/* ===========================
+   메시지
+=========================== */
+
+.login-message {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #e74c3c; /* 기본은 빨간색 (에러) */
+    text-align: center;
+}
+
+.login-message.success {
+    color: #2ecc71; /* 초록색 (성공) */
+}
+
+.success {
+    color: #2ecc71; /* 초록색 */
+}
+.error {
+    color: #e74c3c; /* 빨간색 */
+}
+
+/* ===========================
+   등장 애니메이션
+=========================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===========================
+   반응형 스타일 - 태블릿 이하
+=========================== */
+@media (max-width: 768px) {
+    .modal-content {
+        padding: 20px;
+        width: 90%;
+    }
+
+    .modal-content input,
+    .login-button,
+    .kakao-login,
+    .email-login {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .close {
+        font-size: 24px;
+    }
+}
+
+/* ===========================
+   반응형 스타일 - 모바일
+=========================== */
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 15px;
+        border-radius: 8px;
+    }
+
+    .modal-content input,
+    .login-button,
+    .kakao-login,
+    .email-login {
+        font-size: 13px;
+        padding: 8px;
+    }
+
+    .signup-text {
+        font-size: 12px;
+    }
+
+    .signup-text button {
+        font-size: 12px;
+    }
+}

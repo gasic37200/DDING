@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        table, tr, td, th {
+            border: 1px solid black;
+            border-collapse: collapse;'                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  '
+        }
+        th, td {
+            padding: 10px;
+        }
+    </style>
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성시간</th>
+        <th>조회수</th>
+    </tr>
+    <tr th:each="list: ${boardDTOList}">
+        <td th:text="${list.boardTitle}"></td>
+        <td th:text="${list.createdBy}"></td>
+        <td th:text="${list.createdDate}"></td>
+        <td th:text="${listx.boardHits}"></td>
+    </tr>
+</table>
+</body>
+</html>

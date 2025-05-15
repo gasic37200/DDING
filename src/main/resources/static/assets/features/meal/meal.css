@@ -1,0 +1,87 @@
+/*  식단 카드 전체 박스 */
+.meal-card {
+    flex: 1;
+    min-width: 320px;
+    max-width: 600px;
+    height: 560px;
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    font-size: 1.05rem;
+}
+
+/* 식단 카드 헤더 */
+.meal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.meal-header h2 {
+    margin: 0;
+    font-size: 1.2em;
+}
+
+.meal-header .location {
+    font-size: 0.9em;
+    color: #666;
+}
+
+/*  식단 제목 */
+.meal-card h2 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+}
+
+/*  식사 시간 */
+.meal-card .time {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #6b7280;
+}
+
+/*  식당 위치 */
+.meal-card .location {
+    text-align: right;
+    font-size: 0.9rem;
+    color: #6b7280;
+    margin-bottom: 1rem;
+}
+
+/*  메뉴 리스트 */
+.meal-card ul {
+    list-style: none;
+    margin-bottom: 1.5rem;
+}
+
+.meal-card ul li {
+    margin: 0;
+    color: #464a50;
+}
+
+/* 첫 번째 메뉴 리스트에만 간격 */
+.meal-card ul:first-of-type li {
+    margin-bottom: 1.3rem;
+}
+
+/* 메뉴 구분 선 */
+.meal-card hr {
+    margin-bottom: 0.8rem;
+}
+
+/*  가격 표시 */
+.meal-card .price {
+    font-weight: bold;
+    margin-top: 3.5rem;
+}
+
+.meal-card h3 {
+    margin-bottom: 1.2rem;
+}
+
+/* 고정 메뉴 리스트 (메뉴 간 간격 넓게) */
+.fixed-list li {
+    margin-bottom: 2.5rem !important;
+}
