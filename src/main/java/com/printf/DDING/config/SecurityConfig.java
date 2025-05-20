@@ -2,7 +2,7 @@ package com.printf.DDING.config;
 
 import com.printf.DDING.config.security.JwtAuthenticationFilter;
 import com.printf.DDING.config.security.JwtTokenProvider;
-import com.printf.DDING.member.service.MemberService;
+import com.printf.DDING.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -37,7 +37,7 @@ public class SecurityConfig {
 					// ✅ 누구나 접근 가능한 URL
 					.requestMatchers(
 							"/",                      // 루트 경로
-							"/login", "/signup",     // 로그인/회원가입 관련
+							"/login", "/signup", "/findMenu",     // 로그인/회원가입 관련
 							"/assets/**", "/static/**",
 							"/favicon.ico"           // 파비콘 요청도 막지 않게
 					).permitAll()

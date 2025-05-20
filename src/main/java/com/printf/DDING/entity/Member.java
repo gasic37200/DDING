@@ -1,4 +1,4 @@
-package com.printf.DDING.member.entity;
+package com.printf.DDING.entity;
 
 import jakarta.persistence.*;
 import lombok.*;

@@ -1,8 +1,7 @@
 package com.printf.DDING.config.security;
 
-import com.printf.DDING.member.entity.Member;
-import com.printf.DDING.member.service.MemberService;
-import com.sun.net.httpserver.Filter;
+import com.printf.DDING.entity.Member;
+import com.printf.DDING.service.MemberService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

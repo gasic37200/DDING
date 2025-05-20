@@ -1,4 +1,4 @@
-package com.printf.DDING.member.entity;
+package com.printf.DDING.entity;
 
 enum LoginType {
 	LOCAL, KAKAO, NAVER, GOOGLE

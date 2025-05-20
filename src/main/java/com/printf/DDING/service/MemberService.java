@@ -1,7 +1,7 @@
-package com.printf.DDING.member.service;
+package com.printf.DDING.service;
 
-import com.printf.DDING.member.entity.Member;
-import com.printf.DDING.member.repository.MemberRepository;
+import com.printf.DDING.entity.Member;
+import com.printf.DDING.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

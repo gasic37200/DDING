@@ -1,6 +1,6 @@
-package com.printf.DDING.member.repository;
+package com.printf.DDING.repository;
 
-import com.printf.DDING.member.entity.Member;
+import com.printf.DDING.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

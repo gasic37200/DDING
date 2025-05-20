@@ -1,10 +1,10 @@
-package com.printf.DDING.member.controller;
+package com.printf.DDING.controller;
 
 import com.printf.DDING.config.security.JwtTokenProvider;
-import com.printf.DDING.member.dto.LoginRequest;
-import com.printf.DDING.member.dto.LoginResponse;
-import com.printf.DDING.member.entity.Member;
-import com.printf.DDING.member.service.MemberService;
+import com.printf.DDING.dto.LoginRequest;
+import com.printf.DDING.dto.LoginResponse;
+import com.printf.DDING.entity.Member;
+import com.printf.DDING.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

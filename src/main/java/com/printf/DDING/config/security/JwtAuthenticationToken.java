@@ -1,12 +1,9 @@
 package com.printf.DDING.config.security;
 
-import com.printf.DDING.member.entity.Member;
-import lombok.RequiredArgsConstructor;
+import com.printf.DDING.entity.Member;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.security.auth.Subject;
-import java.security.Principal;
 import java.util.Collection;
 
 public class JwtAuthenticationToken extends AbstractAuthenticationToken {

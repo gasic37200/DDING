@@ -5,7 +5,7 @@ export function openLoginModal() {
             const container = document.getElementById("loginModalContainer");
             container.innerHTML = html;
             initLoginModal(); // 초기화
-        })
+        });
 }
 
 function initLoginModal() {

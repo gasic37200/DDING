@@ -1,4 +1,4 @@
-package com.printf.DDING.member.dto;
+package com.printf.DDING.dto;
 
 import lombok.*;
 

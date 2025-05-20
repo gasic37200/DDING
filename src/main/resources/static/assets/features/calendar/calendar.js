@@ -1,45 +1,46 @@
-import { formatDate } from "../../common/util.js";
-import { renderMealCard } from "../meal/meal.js";
+import { renderMenuCard } from "../menu/menu.js";
 
-let currentDate = new Date();
-let selectedDate = new Date();
+let currentDate = new Date(); // 현재 날짜
+let selectedDate = new Date(); // 선택 날짜
 
+// 초기화
 export function initCalendar() {
-    renderCalendar(currentDate);
+    renderCalendar(currentDate, selectedDate); // 캘린더 랜더링(날짜 등 채우기)
 }
 
-function renderCalendar(date) {
+function renderCalendar(currentDate, selectedDate) {
     const container = document.getElementById("main-content");
-
     container.innerHTML = `
     <div class="calendar-container">
       <div class="calendar-header">
         <button id="prev-month">&lt;</button>
-        <span id="calendar-month">${date.getFullYear()}년 ${date.getMonth() + 1}월</span>
+        <span id="calendar-month">${currentDate.getFullYear()}년 ${currentDate.getMonth() + 1}월</span>
         <button id="next-month">&gt;</button>
       </div>
       <table class="calendar-table" id="calendar-table"></table>
     </div>
-    <div id="meal-card"></div>
+    <div id="menu-card"></div>
   `;
 
+    // 이전 달
     document.getElementById("prev-month").onclick = () => {
         currentDate.setMonth(currentDate.getMonth() - 1);
-        renderCalendar(currentDate);
+        renderCalendar(currentDate, selectedDate);
     };
 
+    // 다음 달
     document.getElementById("next-month").onclick = () => {
         currentDate.setMonth(currentDate.getMonth() + 1);
-        renderCalendar(currentDate);
+        renderCalendar(currentDate, selectedDate);
     };
 
-    renderDates(date);
+    renderDates(currentDate, selectedDate);
 }
 
-function renderDates(date) {
+function renderDates(currentDate, selectedDate) {
     const table = document.getElementById("calendar-table");
-    const year = date.getFullYear();
-    const month = date.getMonth();
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
     const firstDay = new Date(year, month, 1).getDay();
     const lastDate = new Date(year, month + 1, 0).getDate();
 
@@ -73,11 +74,11 @@ function renderDates(date) {
     // 날짜 클릭 처리
     table.querySelectorAll("td[data-date]").forEach(td => {
         td.addEventListener("click", () => {
-            selectedDate = new Date(td.dataset.date);
-            renderCalendar(currentDate);
-            renderMealCard(selectedDate);
+            selectedDate = td.dataset().date;
+            renderCalendar(currentDate, selectedDate);
+            renderMenuCard(selectedDate);
         });
     });
 
-    renderMealCard(selectedDate);
+    renderMenuCard(selectedDate);
 }
