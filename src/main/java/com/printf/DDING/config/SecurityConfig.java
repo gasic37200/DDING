@@ -35,12 +35,12 @@ public class SecurityConfig {
 			// 요청 URL에 대한 권한 설정
 			.authorizeHttpRequests(auth -> auth
 					// ✅ 누구나 접근 가능한 URL
-					.requestMatchers(
-							"/",                      // 루트 경로
-							"/login", "/signup", "/findMenu",     // 로그인/회원가입 관련
-							"/assets/**", "/static/**",
-							"/favicon.ico"           // 파비콘 요청도 막지 않게
-					).permitAll()
+						.requestMatchers(
+								"/",                      // 루트 경로
+								"/login", "/signup", "/findMenu",     // 로그인/회원가입 관련
+								"/assets/**", "/static/**",
+								"/favicon.ico"           // 파비콘 요청도 막지 않게
+						).permitAll()
 
 					// ✅ 회원만 접근 가능한 URL
 					.requestMatchers("/board/write", "/board/save", "/board/favorite/**", "/mypage/**").authenticated()

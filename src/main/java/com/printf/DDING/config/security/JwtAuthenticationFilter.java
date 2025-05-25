@@ -30,7 +30,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		// 2. 토큰이 존재하고 유효하면, 인증 정보 설정
 		if (token != null && jwtTokenProvider.validateToken(token)) {
 			// 3. JWT에서 사용자 이메일(혹은 ID) 추출
-			String memberEmail = jwtTokenProvider.getEmail(token);
+			String memberEmail = jwtTokenProvider.getEmailFromJWT(token);
 
 			// ✅ 여기서 MemberService로 DB에서 Member 조회
 			Member member = memberService.findByEmail(memberEmail);

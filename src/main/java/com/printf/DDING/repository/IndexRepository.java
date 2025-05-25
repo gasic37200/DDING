@@ -11,4 +11,10 @@ import java.util.Date;
 public interface IndexRepository extends JpaRepository<Menu,Integer> {
 	@Query("SELECT m.menuName FROM Menu m WHERE m.menuDate = :menuDate")
 	String findMenuNameByMenuDate(Date menuDate);
+
+	@Query("SELECT count() FROM MenuLike m WHERE m.menuDate = :menuDate")
+	String findMenuNameByMenuDate(Date menuDate);
+
+	@Query("SELECT m.menuName FROM Menu m WHERE m.menuDate = :menuDate")
+	String findMenuNameByMenuDate(Date menuDate);
 }

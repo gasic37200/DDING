@@ -27,6 +27,25 @@ public class IndexController {
 	@ResponseBody
 	public String findMenuName(@DateTimeFormat(pattern = "yyyy-MM-dd")
 							   @RequestParam("menuDate") Date menuDate) {
+		String str = indexService.findMenuName(menuDate);
+		log.info(str);
+		return str;
+	}
+
+	@GetMapping("/findMenuLike")
+	@ResponseBody
+	public String findMenuLike(@RequestParam("menuName") String menuName,
+							   @RequestParam(required = false) int memberNo) {
+		String str = indexService.menuLiked(menuName);
+		String str1 = indexService.menuLikeCount(menuName, memberNo);
+		log.info(str);
+		return str;
+	}
+
+	@GetMapping("/findMenuReview")
+	@ResponseBody
+	public String findMenuReview(@DateTimeFormat(pattern = "yyyy-MM-dd")
+							   @RequestParam("menuDate") Date menuDate) {
 		String str = indexService.findMenuNameByMenuDate(menuDate);
 		log.info(str);
 		return str;

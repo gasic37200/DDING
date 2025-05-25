@@ -1,0 +1,10 @@
+<!-- src/main/resources/templates/blog-details.html -->
+<div>
+    <h2 th:text="${post.title}"></h2>
+    <p th:text="${post.content}"></p>
+    <hr>
+    <div>
+        <strong>작성자:</strong> <span th:text="${post.author}"></span><br>
+        <strong>작성일:</strong> <span th:text="${post.createdAt}"></span>
+    </div>
+</div>

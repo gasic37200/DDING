@@ -33,25 +33,34 @@ public class JwtTokenProvider {
 	}
 
 	// JWT 토큰 생성 메서드
-	public String createToken(String email, String role) {
+	public String createToken(String email, int memberNo, String role) {
 		Date now = new Date();
 		Date validity = new Date(now.getTime() + validityInMilliseconds); // 유효 기간 설정
 
 		return Jwts.builder()
 				.setSubject(email)  // 사용자의 이메일을 Subject로 설정
-				.claim("role", role) // 역할 정보 (예: USER, ADMIN)
+				.claim("memberNo", memberNo)
+				.claim("Role", role) // 역할 정보 (예: USER, ADMIN)
 				.setIssuedAt(now)   // 발급 시간
 				.setExpiration(validity)  // 만료 시간 설정
 				.signWith(SignatureAlgorithm.HS256, secretKey)  // 비밀 키로 서명 설정
 				.compact();  // JWT 토큰 생성
 	}
 
-	public String getEmail(String token) {
+	public String getEmailFromJWT(String token) {
 		return Jwts.parser()
 				.setSigningKey(secretKey)
 				.parseClaimsJws(token)
 				.getBody()
 				.getSubject();  // 보통 이메일은 subject로 넣음
+	}
+
+	public String getMemberNoFromJWT(String token) {
+		return Jwts.parser()
+				.setSigningKey(secretKey)
+				.parseClaimsJws(token)
+				.getBody()
+				.get("member_no", String.class);
 	}
 
 	//  * HTTP 요청의 Authorization 헤더에서 JWT 토큰 값을 추출합니다.

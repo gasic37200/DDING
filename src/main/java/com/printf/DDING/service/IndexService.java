@@ -11,7 +11,14 @@ import java.util.Date;
 public class IndexService {
 	private final IndexRepository indexRepository;
 
-	public String findMenuNameByMenuDate(Date menuDate) {
+	public String findMenuName(Date menuDate) {
 		return indexRepository.findMenuNameByMenuDate(menuDate);
+	}
+
+	public String menuLiked(String menuName) {
+		return indexRepository.(menuName);
+	}
+
+	public String menuLikeCount(String menuName, int memberNo) {
 	}
 }

@@ -58,7 +58,7 @@ function renderDates(currentDate, selectedDate) {
         const thisDate = new Date(year, month, d);
         const isToday = thisDate.toDateString() === new Date().toDateString();
         const isSelected = thisDate.toDateString() === selectedDate.toDateString();
-        html += `<td class="${isToday ? "today" : ""} ${isSelected ? "selected" : ""}" data-date="${thisDate.toISOString()}">${d}</td>`;
+        html += `<td class="${isToday ? "today" : ""} ${isSelected ? "selected" : ""}" data-date="${thisDate}">${d}</td>`;
         dayCount++;
         if (dayCount % 7 === 0) html += "</tr><tr>";
     }
@@ -74,7 +74,8 @@ function renderDates(currentDate, selectedDate) {
     // 날짜 클릭 처리
     table.querySelectorAll("td[data-date]").forEach(td => {
         td.addEventListener("click", () => {
-            selectedDate = td.dataset().date;
+            selectedDate = new Date(td.dataset.date);
+            console.log(selectedDate)
             renderCalendar(currentDate, selectedDate);
             renderMenuCard(selectedDate);
         });

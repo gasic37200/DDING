@@ -1,34 +1,47 @@
+import { renderNavbar } from "../../components/navbar.js";
+import { isLoggedIn, logout } from "../../common/auth-util.js";
+
 export function openLoginModal() {
-    fetch(fetch("/assets/features/auth/login.html"))
+    fetch("/assets/features/login/login.html")
         .then(res => res.text()) // input에서 text를 가져옴
         .then(html => { // 가져온 text임
             const container = document.getElementById("loginModalContainer");
             container.innerHTML = html;
-            initLoginModal(); // 초기화
-        });
+            setTimeout(() => {
+                initLoginModal();
+            }, 0); // DOM 렌더링 직후 실행
+        }).catch(e => console.log(e));
 }
 
 function initLoginModal() {
-    const modal = document.getElementById("loginModal");
-    const closeBtn = modal.querySelector(".close");
+    const loginModal = document.getElementById("loginModal");
+    const closeBtn = loginModal.querySelector(".close");
+    const modalContent = loginModal.querySelector(".modal-content");
 
-    // ?는 옵셔널 체인지 id를 못찾아서 넘어감
-    document.getElementById("authButton")?.addEventListener("click", () => {
-        // style.display: 해당 요소의 **화면 표시 방식 (CSS display 속성)**을 바꾸는 속성
-        // "flex": CSS의 Flexbox 레이아웃 방식
-        modal.style.display = "flex";
+    const modal = document.getElementById("loginModal");
+
+    Object.defineProperty(modal.style, "display", {
+        set(value) {
+            console.trace("🚨 loginModal.style.display = ", value);
+        }
     });
 
     // 닫기 버튼 클릭 시
     closeBtn.addEventListener("click", () => {
-        modal.style.display = "none";
+        console.log("닫기 닫기")
+        loginModal.classList.remove("show");
     });
 
-    // 로그인 모달 이외 다른 곳 클릭 시
-    window.addEventListener("click()", event => {
-        if (event.target === modal) {
-            modal.style.display = "none";
+    // 모달 바깥 클릭 시에만 닫히게
+    loginModal.addEventListener("click", event => {
+        if (event.target === loginModal) {
+            console.log("바깥 닫기")
+            loginModal.classList.remove("show");
         }
+    });
+
+    modalContent.addEventListener("click", event => {
+        event.stopPropagation();
     });
 
     // async는 비동기인데 feach로 로그인 검사하는데 시간이 걸리므로 처리할 때까지 대기
@@ -41,13 +54,13 @@ function initLoginModal() {
         const messageEl = document.getElementById("loginMessage");
         try {
 
-            const res = await feach("/login", {
+            const res = await fetch("/login", {
                 method: "POST",
-                header: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ memberInputId: memberId, memberInputPass: memberPass})
             });
             const data = await res.json();
-            if (data.success()) {
+            if (data.success) {
                 // 성공 메시지
                 messageEl.textContent = "로그인에 성공했습니다!";
                 messageEl.classList.remove("error");
@@ -56,9 +69,8 @@ function initLoginModal() {
                 // 토큰 저장 후 모달 닫고 새로고침
                 localStorage.setItem("accessToken", data.token);
                 setTimeout(() => {
-                    document.getElementById("loginModal").style.display = "none";
-                    window.location.reload();
-                }, 1000); // 1초 후 새로고침
+                    renderNavbar();
+                }, 0);
             } else {
                 // 실패 메시지
                 messageEl.textContent = "아이디 또는 비밀번호가 틀렸습니다.";
