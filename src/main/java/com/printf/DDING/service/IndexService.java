@@ -1,5 +1,6 @@
 package com.printf.DDING.service;
 
+import com.printf.DDING.entity.Member;
 import com.printf.DDING.repository.IndexRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -15,10 +16,15 @@ public class IndexService {
 		return indexRepository.findMenuNameByMenuDate(menuDate);
 	}
 
-	public String menuLiked(String menuName) {
-		return indexRepository.(menuName);
+	public int countMenuLike(String menuName) {
+		return indexRepository.countMenuLikesByMenuName(menuName);
 	}
 
-	public String menuLikeCount(String menuName, int memberNo) {
+	public boolean isMenuLiked(int memberNo, String menuName) {
+		return indexRepository.countMenuLikeByMember(memberNo, menuName) > 0;
+	}
+
+	public int countMenuReview(String menuName) {
+		return indexRepository.countMenuReviewsByMenuName(menuName);
 	}
 }

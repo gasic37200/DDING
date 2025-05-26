@@ -14,26 +14,47 @@ export function renderMenuCard(date) {
 
     let dateFormat = formatDate(date);
     console.log(dateFormat)
-    fetch(`/findMenu?menuDate=${dateFormat}`)
+    fetch(`/menu/find?menuDate=${dateFormat}`)
         .then(res => res.text())
         .then(async (data) => {
             const menuitem = data.split(",").map(item => item.trim());
             // await Promise.all([...]) -> 비동기 병렬 처리
-            const menuData = await Promise.all(menuitem.map(async (item) => {
-                const [likeRes, reviewRes] = await Promise.all([
-                    fetch(`/findMenuLike?menuName=${encodeURIComponent(item)}&memeber_no=${memberNo}`)
-                        .then(res => res.json()),
-                    fetch(`/findMenuReview?menuName=${encodeURIComponent(item)}`)
-                        .then(res => res.json())
-                ]);
+            const menuData = await Promise.all(
+                menuitem.map(async (item) => {
+                    try {
+                        let url = `/menu/info?menuName=${encodeURIComponent(item)}`;
+                        if (memberNo !== null && memberNo !== undefined) {
+                            url += `&memberNo=${memberNo}`;
+                        }
 
-                return {
-                    menuName: item,
-                    likeCount: likeRes.likeCount,
-                    likeByMe: likeRes.likeByMe,
-                    reviewCount: reviewRes.reviewCount
-                }
-            }))
+                        const res = await fetch(url);
+                        if (!res.ok) {
+                            console.warn(`[주의] menuName=${item} 요청 실패 (${res.status})`);
+                            return {
+                                menuName: item,
+                                likeCount: 0,
+                                likeByMe: false,
+                                reviewCount: 0
+                            };
+                        }
+                        const jsonData = await res.json();
+                        return {
+                            menuName: item,
+                            likeCount: jsonData.likeCount,
+                            likeByMe: jsonData.likedByMe,
+                            reviewCount: jsonData.reviewCount
+                        };
+                    } catch (e) {
+                        console.error(`menuName=${item} 요청 중 예외 발생`, e);
+                        return {
+                            menuName: item,
+                            likeCount: 0,
+                            likeByMe: false,
+                            reviewCount: 0
+                        };
+                    }
+                })
+            );
 
             container.innerHTML = `
             <div class="menu-header">
@@ -42,14 +63,24 @@ export function renderMenuCard(date) {
             </div>
             <div class="time">11:00 ~ 13:30</div>
             ${
-                !data || data.length === 0
+                menuData.every(item => !item.menuName)
                     ? "<p>식단 정보가 없습니다.</p>"
                     : `
-                      <ul class="menu-list">${menuitem.map(item => `<li>${item}</li>`)}</ul>
-                      <hr/>
-                      <h3>고정 메뉴</h3>
-                      <ul class="fixed-list">${fixedMenu.map(item => `<li>${item}</li>`).join("")}</ul>
-                      <div class="price">가격: 6,000원</div>
+                    <ul class="menu-list">
+                        ${menuData.map(item => `
+                            <li>
+                                <button id="${item.menuName}">${item.likeByMe ? "❤️" : "🤍"}</button>
+                                <strong>${item.menuName}</strong><br/> 
+                                좋아요: ${item.likeCount} / 💬 리뷰: ${item.reviewCount}
+                            </li>
+                        `).join("")}
+                    </ul>
+                    <hr/>
+                    <h3>고정 메뉴</h3>
+                    <ul class="fixed-list">
+                      ${fixedMenu.map(item => `<li>${item}</li>`).join("")}
+                    </ul>
+                    <div class="price">가격: 6,000원</div>
                     `
             }
       `;

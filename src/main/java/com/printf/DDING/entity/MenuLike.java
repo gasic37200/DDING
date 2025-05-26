@@ -18,7 +18,7 @@ public class MenuLike {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long likeNo;
+	private int likeNo;
 
 	@Column(nullable = false)
 	private String menuName;

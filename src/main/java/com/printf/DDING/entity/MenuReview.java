@@ -1,11 +1,12 @@
-import com.printf.DDING.entity.Member;
+package com.printf.DDING.entity;
+
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "review_tb")
+@Table(name = "menu_review_tb")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -15,7 +16,7 @@ public class MenuReview {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long reviewNo;
+	private int reviewNo;
 
 	@Column(nullable = false)
 	private String menuName;

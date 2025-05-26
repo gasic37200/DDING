@@ -25,5 +25,5 @@ export function getMemberNoFromJwt() {
     // jwt의 토큰 구조 - 헤더.페이로드.서명
     const payload = token.split(".")[1]; // 페이로드
     const decoded = JSON.parse(atob(payload)); //
-    return decoded["memberNo"];
+    return decoded.member_no;
 }
