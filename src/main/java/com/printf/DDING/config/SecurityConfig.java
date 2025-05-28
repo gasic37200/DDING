@@ -37,7 +37,8 @@ public class SecurityConfig {
 					// ✅ 누구나 접근 가능한 URL
 						.requestMatchers(
 								"/",                      // 루트 경로
-								"/login", "/signup", "/menu/**",     // 로그인/회원가입 관련
+								"/login", "/signup", "/menu/**",    // 로그인/회원가입 관련
+								"/sms/**", // 문자 보내기 테스트
 								"/assets/**", "/static/**",
 								"/favicon.ico"           // 파비콘 요청도 막지 않게
 						).permitAll()

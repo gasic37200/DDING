@@ -40,6 +40,8 @@ configurations {
 			implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 			// secretKey를 yml이 아닌 .evn으로 숨겨 보안성 높이기 위한 라이브러리
 			implementation 'io.github.cdimascio:java-dotenv:5.2.2'
+
+			implementation 'net.nurigo:sdk:4.2.7'
 		}
 		extendsFrom annotationProcessor
 	}
