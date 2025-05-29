@@ -37,13 +37,14 @@ public class SecurityConfig {
 					// ✅ 누구나 접근 가능한 URL
 						.requestMatchers(
 								"/",                      // 루트 경로
-								"/login", "/signup", "/menu/**",     // 로그인/회원가입 관련
 								"/assets/**", "/static/**",
+								"/login", "/signup", "/menu/**", "/review/**",     // 로그인/회원가입 관련
+								"/menu/info",
 								"/favicon.ico"           // 파비콘 요청도 막지 않게
 						).permitAll()
 
 					// ✅ 회원만 접근 가능한 URL
-					.requestMatchers("/board/write", "/board/save", "/board/favorite/**", "/mypage/**").authenticated()
+					.requestMatchers("/menu_like/update", "/board/write", "/board/save", "/board/favorite/**", "/mypage/**").authenticated()
 
 					// 🔒 나머지는 기본적으로 인증 필요
 					.anyRequest().authenticated()

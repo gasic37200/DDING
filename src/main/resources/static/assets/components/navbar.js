@@ -1,5 +1,6 @@
 import { isLoggedIn, logout } from "../common/auth-util.js";
 import { openLoginModal } from "../features/login/login.js";
+import { renderMenuCard } from "../features/menu/menu.js";
 
 // static/assets/components/navbar.js
 
@@ -33,6 +34,7 @@ export function renderNavbar() {
                 console.log("비활성화")
                 logout();
                 renderNavbar();
+                renderMenuCard(new Date());
             } else {
                 console.log("활성화")
                 document.getElementById("loginModal").classList.add("show");

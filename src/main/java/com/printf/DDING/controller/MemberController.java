@@ -24,7 +24,7 @@ public class MemberController {
 				loginRequest.getMemberInputPass());
 
 		if (member != null) {
-			System.out.println(member.getMemberId());
+			System.out.println(member.getAuthorities());
 			String token = jwtTokenProvider.createToken(member.getMemberEmail(), member.getMemberNo(), String.valueOf(member.getRole()));
 			LoginResponse loginResponse = new LoginResponse(true, member.getMemberName(), token);
 			return ResponseEntity.ok(loginResponse);

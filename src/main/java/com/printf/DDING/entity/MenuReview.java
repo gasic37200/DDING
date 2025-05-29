@@ -25,6 +25,9 @@ public class MenuReview {
 	private String reviewContent;
 
 	@Column(nullable = false)
+	private int reviewRate;
+
+	@Column(nullable = false)
 	private LocalDateTime createdAt;
 
 	// FK: member

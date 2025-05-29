@@ -1,5 +1,5 @@
 import { renderNavbar } from "../../components/navbar.js";
-import { isLoggedIn, logout } from "../../common/auth-util.js";
+import {renderMenuCard} from "../menu/menu.js";
 
 export function openLoginModal() {
     fetch("/assets/features/login/login.html")
@@ -70,6 +70,7 @@ function initLoginModal() {
                 localStorage.setItem("accessToken", data.token);
                 setTimeout(() => {
                     renderNavbar();
+                    renderMenuCard(new Date())
                 }, 0);
             } else {
                 // 실패 메시지

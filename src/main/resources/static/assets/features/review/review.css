@@ -1,0 +1,398 @@
+@import url('https://fonts.googleapis.com/css2?family=Pretendard&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Pretendard', sans-serif;
+  background-color: #f2f4f8;
+  color: #333;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2rem;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.left-box, .right-box {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  box-sizing: border-box;
+}
+
+.left-box {
+  flex: 0 0 35%;
+  max-width: 35%;
+  position: sticky;
+  top: 20px;
+  height: fit-content;
+}
+
+.right-box {
+  flex: 0 0 60%;
+  max-width: 60%;
+  min-height: 1000px;
+  display: flex;
+  flex-direction: column;
+  transition: height 0.3s ease;
+  overflow: visible;
+}
+
+/* 평균 평점 */
+.avg-score {
+  font-size: 3rem;
+  font-weight: 800;
+  text-align: center;
+  color: #13294B;
+}
+
+.avg-score .stars {
+  color: gold;
+  font-size: 1.5rem;
+  margin-top: 0.5rem;
+  display: block;
+}
+
+/* 별점 분포 바 */
+.rating-distribution {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 0.95rem;
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bar span {
+  width: 2.5rem;
+  text-align: right;
+}
+
+.bar-outer {
+  background: #e0e0e0;
+  width: 100%;
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.bar-inner {
+  height: 100%;
+  background: gold;
+  width: 0%;
+  transition: width 0.4s ease;
+}
+
+.count {
+  width: 2rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+/* 리뷰 작성 버튼 */
+#writeReviewBtn {
+  margin-bottom: 1.5rem;
+  padding: 0.6rem 1.2rem;
+  background-color: #005EB8;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.1s ease;
+}
+
+#writeReviewBtn:hover {
+  background-color: #3a7ed0;
+}
+
+#writeReviewBtn:active {
+  transform: scale(0.97);
+}
+
+/* 리뷰 카드 */
+.review-item {
+  background-color: #fff;
+  margin-bottom: 1.2rem;
+  padding: 1.2rem;
+  border-radius: 12px;
+  border: 1px solid #e0e0e0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.review-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.review-item strong {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.review-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.review-time {
+  color: #888;
+  font-size: 0.85rem;
+  white-space: nowrap;
+}
+
+/* 모달 */
+.modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  width: 320px;
+  text-align: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  animation: popIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes popIn {
+  0% { transform: scale(0.95); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.hidden {
+  display: none;
+}
+
+/* 별점 선택 */
+.star-rating {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.star-rating i {
+  font-size: 2.5rem;
+  cursor: pointer;
+  color: #ccc;
+  transition: transform 0.25s ease, color 0.25s ease, text-shadow 0.25s ease;
+}
+
+.star-rating i:hover {
+  transform: scale(1.3) rotate(-5deg);
+  color: gold;
+  text-shadow: 0 0 6px rgba(255, 215, 0, 0.5);
+}
+
+.star-rating i.selected,
+.star-rating i.hovered {
+  color: gold;
+}
+
+/* 텍스트 입력 */
+textarea {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 0.75rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  resize: none;
+  font-size: 1rem;
+}
+
+/* 버튼 스타일 */
+#submitReviewBtn, #cancelRatingBtn, #cancelReviewBtn {
+  margin-top: 1rem;
+  padding: 0.6rem 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.1s ease;
+}
+
+#submitReviewBtn {
+  background-color: #6077c5;
+  color: white;
+}
+
+#submitReviewBtn:hover {
+  background-color: #449d48;
+}
+
+#submitReviewBtn:active,
+#cancelRatingBtn:active,
+#cancelReviewBtn:active {
+  transform: scale(0.97);
+}
+
+#cancelRatingBtn, #cancelReviewBtn {
+  background-color: #ddd;
+  margin-left: 0.5rem;
+}
+
+#cancelRatingBtn:hover, #cancelReviewBtn:hover {
+  background-color: #ccc;
+}
+
+/* 페이지네이션 */
+#pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 1rem;
+  font-size: 1rem;
+  flex-wrap: wrap;
+}
+
+#pagination button {
+  background: white;
+  border: 1px solid #ccc;
+  color: #13294B;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+#pagination button:hover {
+  background: #005EB8;
+  color: white;
+  border-color: #005EB8;
+  transform: translateY(-2px);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+#pagination button.active {
+  background: #13294B;
+  color: white;
+  border-color: #13294B;
+  font-weight: bold;
+  cursor: default;
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.3);
+}
+
+/* 반응형 */
+@media screen and (max-width: 1024px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .left-box, .right-box {
+    padding: 1.5rem;
+    max-width: 100%;
+  }
+
+  .left-box {
+    position: relative;
+    top: initial;
+    flex: 0 0 40%;
+  }
+
+  .right-box {
+    flex: 0 0 55%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .left-box, .right-box {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .avg-score {
+    font-size: 2.5rem;
+  }
+
+  .rating-distribution {
+    font-size: 0.85rem;
+  }
+
+  .bar span {
+    font-size: 0.85rem;
+  }
+
+  .bar-inner {
+    height: 8px;
+  }
+
+  .star-rating i {
+    font-size: 2rem;
+  }
+
+  textarea {
+    font-size: 0.9rem;
+  }
+
+  #submitReviewBtn, #cancelRatingBtn, #cancelReviewBtn {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .avg-score {
+    font-size: 2rem;
+  }
+
+  .rating-distribution {
+    font-size: 0.8rem;
+  }
+
+  .bar span {
+    font-size: 0.8rem;
+  }
+
+  .star-rating i {
+    font-size: 1.8rem;
+  }
+
+  .modal-content {
+    width: 90%;
+    padding: 1.5rem;
+  }
+
+  textarea {
+    font-size: 0.85rem;
+  }
+
+  #submitReviewBtn, #cancelRatingBtn, #cancelReviewBtn {
+    font-size: 0.85rem;
+  }
+}

@@ -28,6 +28,10 @@ public class MemberService {
 		memberRepository.save(member); // JPA든 MyBatis든 저장
 	}
 
+	public Member findByMemberNo(int memberNo) {
+		return memberRepository.findByMemberNo(memberNo);
+	}
+
 	public Member findByEmail(String memberEmail) {
 		return memberRepository.findByMemberEmail(memberEmail);
 	}

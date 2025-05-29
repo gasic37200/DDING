@@ -40,7 +40,7 @@ public class JwtTokenProvider {
 		return Jwts.builder()
 				.setSubject(email)  // 사용자의 이메일을 Subject로 설정
 				.claim("memberNo", memberNo)
-				.claim("Role", role) // 역할 정보 (예: USER, ADMIN)
+				.claim("role", role) // 역할 정보 (예: USER, ADMIN)
 				.setIssuedAt(now)   // 발급 시간
 				.setExpiration(validity)  // 만료 시간 설정
 				.signWith(SignatureAlgorithm.HS256, secretKey)  // 비밀 키로 서명 설정
@@ -81,7 +81,8 @@ public class JwtTokenProvider {
 			Jwts.parser().setSigningKey(secretKey).parseClaimsJws(token);
 			return true;
 		} catch (Exception e) {
-			return false; 
+			System.out.println("JWT 검증 실패: " + e.getClass().getSimpleName() + " - " + e.getMessage());
+			return false;
 		}
 	}
 }

@@ -16,15 +16,5 @@ public class IndexService {
 		return indexRepository.findMenuNameByMenuDate(menuDate);
 	}
 
-	public int countMenuLike(String menuName) {
-		return indexRepository.countMenuLikesByMenuName(menuName);
-	}
 
-	public boolean isMenuLiked(int memberNo, String menuName) {
-		return indexRepository.countMenuLikeByMember(memberNo, menuName) > 0;
-	}
-
-	public int countMenuReview(String menuName) {
-		return indexRepository.countMenuReviewsByMenuName(menuName);
-	}
 }

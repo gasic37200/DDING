@@ -1,8 +1,12 @@
 // static/assets/common/auth-util.js
 
+export function getToken() {
+    return localStorage.getItem("accessToken");
+}
+
 export function isLoggedIn() {
     // !!는 강제로 boolean으로 변환(값 -> true, null -> false)
-    const token = localStorage.getItem("accessToken");
+    const token = getToken();
     console.log(token)
     return !!token;
 }
@@ -19,11 +23,11 @@ export function token() {
 }
 
 export function getMemberNoFromJwt() {
-    const token = localStorage.getItem("accessToken");
+    const token = getToken();
     if (!token) return null;
 
     // jwt의 토큰 구조 - 헤더.페이로드.서명
     const payload = token.split(".")[1]; // 페이로드
     const decoded = JSON.parse(atob(payload)); //
-    return decoded.member_no;
+    return decoded.memberNo;
 }

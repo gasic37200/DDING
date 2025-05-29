@@ -23,7 +23,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 	 */
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-		System.out.println(request.getRequestURL().toString());
 		// 1. JWT 토큰을 HTTP 헤더에서 추출
 		String token = jwtTokenProvider.resolveToken(request);
 
@@ -35,6 +34,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 			// ✅ 여기서 MemberService로 DB에서 Member 조회
 			Member member = memberService.findByEmail(memberEmail);
 
+			System.out.println(member.getAuthorities());
 			// 4. 인증 정보 생성 (기본적으로 인증된 사용자의 정보를 담음)
 			JwtAuthenticationToken authentication =
 					new JwtAuthenticationToken(member, member.getAuthorities());  // 인증 정보는 이메일과 권한 등
