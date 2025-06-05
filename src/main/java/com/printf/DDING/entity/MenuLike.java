@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class MenuLike {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int likeNo;
@@ -23,11 +24,10 @@ public class MenuLike {
 	private String menuName;
 
 	@Column(nullable = false)
-	private LocalDateTime likedAt;
+	private LocalDateTime createdAt;
 
-	// FK: member
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "member_no")
+	@JoinColumn(name = "member_no", nullable = false)
 	private Member member;
 
 	public MenuLike(Member member, String menuName) {
@@ -37,6 +37,6 @@ public class MenuLike {
 
 	@PrePersist
 	public void prePersist() {
-		this.likedAt = LocalDateTime.now();
+		this.createdAt = LocalDateTime.now();
 	}
 }

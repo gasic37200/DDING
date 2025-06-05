@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자유게시판 - 오늘의 메뉴는</title>
+    <link rel="stylesheet" href="/assets/features/board/board.css"/>
+    <link rel="stylesheet" href="/assets/components/navbar.css"/>
+    <link rel="stylesheet" href="/assets/features/login/login.css"/>
+</head>
+<body>
+    <header class="header"></header>
+    <script type="module">
+        // navbar.js 안에 renderNavbar import
+        import { renderNavbar } from "/assets/components/navbar.js";
+        renderNavbar();
+    </script>
+    <main class="board-container">
+    <nav class="sidebar">
+        <a id="free-board"><button>📢 자유게시판</button></a>
+        <a id="lunch-board"><button>🍱 점메추 게시판</button></a>
+        <a id="board-uniqe"><button>🍜 나만 아는 맛집</button></a>
+        <a id="board-pub"><button>🍶 나만 아는 술집</button></a>
+    </nav>
+
+    <div class="board-content">
+      <div class="board-section active">
+        <h2>자유게시판</h2>
+
+        <div class="post" onclick="openDetailModal('안녕하세요! 오늘 급식 맛있었어요 😋', 'MJ학생', '2025.04.14', '오늘 국밥이 정말 맛있었어요! 여러분도 드셨나요?', ['맛있었어요!', '저도 먹었어요!'], false)">
+          <div class="post-title">안녕하세요! 오늘 급식 맛있었어요 😋</div>
+          <div class="post-meta">작성자: MJ학생 | 2025.04.14</div>
+          <div class="post-content">오늘 국밥이 정말 맛있었어요! 여러분도 드셨나요?</div>
+        </div>
+
+        <div class="post" onclick="openDetailModal('시험기간입니다ㅠㅠ', '컴공과', '2025.04.13', '다들 공부 열심히 하세요.. 저는 벌써 체력이 방전...', ['화이팅!', '힘내세요!'], false)">
+          <div class="post-title">시험기간입니다ㅠㅠ</div>
+          <div class="post-meta">작성자: 컴공과 | 2025.04.13</div>
+          <div class="post-content">다들 공부 열심히 하세요.. 저는 벌써 체력이 방전...</div>
+        </div>
+
+        <div style="text-align: right; margin-bottom: 20px;">
+          <button onclick="openWriteModal()" class="write-btn">+ 글쓰기</button>
+        </div>
+      </div>
+
+      <!-- 글쓰기 모달 -->
+      <div id="writeModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeWriteModal()">&times;</span>
+          <h2>글쓰기</h2>
+          <input type="text" id="newTitle" placeholder="제목">
+          <textarea id="newContent" placeholder="내용을 입력하세요" style="width: 100%; height: 150px; padding: 10px;"></textarea>
+          <button onclick="submitPost()">작성 완료</button>
+        </div>
+      </div>
+
+      <!-- 상세보기 모달 -->
+      <div id="detailModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeDetailModal()">&times;</span>
+          <h2 id="detailTitle" class="modal-title"></h2>
+          <div id="detailAuthor"></div>
+          <div id="detailDate"></div>
+          <p id="detailContent"></p>
+          <hr>
+          <h4>댓글</h4>
+          <div id="commentList"></div>
+
+          <div class="comment-input-wrapper">
+            <textarea id="commentInput" placeholder="댓글을 입력하세요"></textarea>
+            <button onclick="addComment()" class="comment-submit">작성</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script src="/assets/features/board/board.js"></script>
+</body>
+</html>

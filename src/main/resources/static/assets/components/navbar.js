@@ -12,9 +12,9 @@ export function renderNavbar() {
         header.innerHTML = `
             <div class="title">학식 알리미</div>
             <nav class="nav">
-                <a href="#menu">식단</a>
-                <a href="#board">게시판</a>
-                ${loggedIn ? '<a href="#mypage">마이페이지</a>' : ''}
+                <a href="/">식단</a>
+                <a href="/board">게시판</a>
+                ${loggedIn ? '<a href="/mypage">마이페이지</a>' : ''}
                 <!-- 로그인 버튼 -->
                 <button id="authButton">${loggedIn ? "로그아웃" : "로그인"}</button>
                 <!-- 로그인 모달을 불러올 div -->

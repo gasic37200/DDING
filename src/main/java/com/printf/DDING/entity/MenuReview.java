@@ -1,5 +1,6 @@
 package com.printf.DDING.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -30,8 +31,20 @@ public class MenuReview {
 	@Column(nullable = false)
 	private LocalDateTime createdAt;
 
-	// FK: member
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "member_no")
+	@JoinColumn(name = "member_no", nullable = false)
+	@JsonIgnore
 	private Member member;
+
+	public MenuReview(Member member, String menuName, String reviewContent, int reviewRate) {
+		this.member = member;
+		this.menuName = menuName;
+		this.reviewContent = reviewContent;
+		this.reviewRate = reviewRate;
+	}
+
+	@PrePersist
+	public void prePersist() {
+		this.createdAt = LocalDateTime.now();
+	}
 }

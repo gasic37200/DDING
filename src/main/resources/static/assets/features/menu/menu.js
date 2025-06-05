@@ -85,7 +85,7 @@ export function renderMenuCard(date) {
                                     좋아요: ${item.likeCount} / 
                                     <button class="review-button" data-name="${item.menuName}">💬</button>
                                     리뷰: ${item.reviewCount} / 
-                                    평점: ${item.reviewRate}
+                                    평점: ${item.reviewRate === 0 ? 0 : item.reviewRate.toFixed(1)}
                                 </li>
                             `).join("")}
                         </ul>
@@ -108,7 +108,7 @@ function likeButtonHandler(e) {
     if (e.target.classList.contains("like-button")) {
         const menuName = e.target.dataset.name;
         console.log(localStorage.getItem("accessToken"));
-        fetch(`/menu_like/update`, {
+        fetch(`/menu-like/update`, {
             method: "POST",
             headers: {
                 "Content-type": "text/plain",
@@ -132,11 +132,6 @@ function reviewButtonHandler(e) {
         const menuName = e.target.dataset.name;
         console.log(localStorage.getItem("accessToken"));
 
-        if (memberNo != null) {
-            window.location.href = `/review?menuName=${encodeURIComponent(menuName)}`;
-        } else {
-            alert("로그인이 필요한 기능입니다.");
-            document.getElementById("loginModal").classList.add("show");
-        }
+        window.location.href = `/menu-review?menuName=${encodeURIComponent(menuName)}`;
     }
 }

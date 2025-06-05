@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class MenuLikeController {
 	private final MenuLikeService menuLikeService;
 
-	@PostMapping("/menu_like/update")
+	@PostMapping("/menu-like/update")
 	@ResponseBody
 	public void toggleMenuLike(@AuthenticationPrincipal Member member,
 							   @RequestBody String menuName) {

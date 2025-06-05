@@ -1,61 +1,58 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>리뷰 게시판</title>
-  <link rel="stylesheet" href="review.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>리뷰 게시판</title>
+    <link rel="stylesheet" href="/assets/features/review/review.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
-  <main class="container">
+<main class="container">
+    <!-- 왼쪽 평균 평점 및 별점 분포 -->
     <section class="left-box">
-      <div class="avg-score">
-        <div id="averageRating">0.0</div>
-        <div class="stars">⭐⭐⭐⭐⭐</div>
-      </div>
-      <div class="rating-distribution">
-        <div class="bar" data-rate="5"><span>5점</span><div class="bar-outer"><div class="bar-inner" id="bar-5"></div></div><span class="count" id="count-5">0</span></div>
-        <div class="bar" data-rate="4"><span>4점</span><div class="bar-outer"><div class="bar-inner" id="bar-4"></div></div><span class="count" id="count-4">0</span></div>
-        <div class="bar" data-rate="3"><span>3점</span><div class="bar-outer"><div class="bar-inner" id="bar-3"></div></div><span class="count" id="count-3">0</span></div>
-        <div class="bar" data-rate="2"><span>2점</span><div class="bar-outer"><div class="bar-inner" id="bar-2"></div></div><span class="count" id="count-2">0</span></div>
-        <div class="bar" data-rate="1"><span>1점</span><div class="bar-outer"><div class="bar-inner" id="bar-1"></div></div><span class="count" id="count-1">0</span></div>
-      </div>
+        <div id="menuName" th:data-menu="${menuName}" th:text="${menuName}"></div>
+        <div class="avg-score">
+            <div id="averageRating">0.0</div>
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+        </div>
+
+        <div class="rating-distribution" id="ratingDistribution"></div>
     </section>
 
-    <!-- 리뷰 쓰기 버튼 -->
+    <!-- 오른쪽 리뷰 목록 및 버튼 -->
     <section class="right-box">
-      <button id="writeReviewBtn">리뷰 쓰기</button>
-      <div id="reviewList"></div>
-      <div id="pagination"></div>
+        <button id="writeReviewBtn">리뷰 쓰기</button>
+        <div id="reviewList"></div>
+        <div id="pagination"></div>
     </section>
-  </main>
+</main>
 
-  <!-- 평점 선택 모달 -->
-  <div id="ratingModal" class="modal hidden">
+<!-- 평점 선택 모달 -->
+<div id="ratingModal" class="modal hidden">
     <div class="modal-content">
-      <h3>평점을 선택해주세요</h3>
-      <div class="star-rating" id="starSelect">
-        <i class="fa-regular fa-star" data-value="1"></i>
-        <i class="fa-regular fa-star" data-value="2"></i>
-        <i class="fa-regular fa-star" data-value="3"></i>
-        <i class="fa-regular fa-star" data-value="4"></i>
-        <i class="fa-regular fa-star" data-value="5"></i>
-      </div>
-      <button id="cancelRatingBtn">취소</button>
+        <h3>평점을 선택해주세요</h3>
+        <div class="star-rating" id="starSelect">
+            <i class="fa-regular fa-star" data-value="1"></i>
+            <i class="fa-regular fa-star" data-value="2"></i>
+            <i class="fa-regular fa-star" data-value="3"></i>
+            <i class="fa-regular fa-star" data-value="4"></i>
+            <i class="fa-regular fa-star" data-value="5"></i>
+        </div>
+        <button id="cancelRatingBtn">취소</button>
     </div>
-  </div>
+</div>
 
-  <!-- 리뷰 작성 모달 -->
-  <div id="reviewModal" class="modal hidden">
+<!-- 리뷰 작성 모달 -->
+<div id="reviewModal" class="modal hidden">
     <div class="modal-content">
-      <h3>리뷰 작성</h3>
-      <textarea id="reviewText" placeholder="리뷰를 입력하세요..."></textarea>
-      <button id="submitReviewBtn">제출</button>
-      <button id="cancelReviewBtn">취소</button>
+        <h3>리뷰 작성</h3>
+        <textarea id="reviewText" placeholder="리뷰를 입력하세요..."></textarea>
+        <button id="submitReviewBtn">제출</button>
+        <button id="cancelReviewBtn">취소</button>
     </div>
-  </div>
+</div>
 
-  <script src="review.js"></script>
+<script type="module" src="/assets/features/review/review.js"></script>
 </body>
 </html>

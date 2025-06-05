@@ -1,5 +1,5 @@
 package com.printf.DDING.entity;
 
-enum LoginType {
+public enum LoginType {
 	LOCAL, KAKAO, NAVER, GOOGLE
 }

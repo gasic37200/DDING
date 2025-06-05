@@ -38,7 +38,6 @@ public class MenuLikeService {
 		if (isMenuLiked(member, menuName)) {
 			menuLikeRepository.delete(menuLike);
 		} else {
-//			member = memberService.findByMemberNo(memberNo);
 			menuLikeRepository.save(new MenuLike(member, menuName));
 		}
 	}
