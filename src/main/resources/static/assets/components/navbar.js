@@ -10,7 +10,7 @@ export function renderNavbar() {
         const loggedIn = isLoggedIn();
 
         header.innerHTML = `
-            <div class="title">띵!</div>
+            <a href="/" class="title">띵!</a>
             <nav class="nav">
                 <a href="/">식단</a>
                 <a href="/board">게시판</a>

@@ -186,31 +186,3 @@ body {
 .fixed-list li {
   margin-bottom: 2.5rem !important;
 }
-
-/*  반응형 스타일 - 모바일 (최대 768px) */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    padding: 1rem;
-  }
-
-  .calendar-container,
-  .menu-card {
-    width: 100% !important;
-    height: auto !important;
-  }
-
-  .menu-card {
-    margin-top: 1rem;
-  }
-
-  .nav a {
-    display: block;
-    margin: 0.5rem 0;
-  }
-
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-}
