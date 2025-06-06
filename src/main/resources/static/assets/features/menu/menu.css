@@ -85,3 +85,56 @@
 .fixed-list li {
     margin-bottom: 2.5rem !important;
 }
+
+@media (max-width: 1024px) {
+  .menu-card {
+    max-width: 100%;
+    height: auto;
+    padding: 0.8rem;
+  }
+  .menu-card h2 {
+    font-size: 1.3rem;
+  }
+  .menu-card .time,
+  .menu-card .location {
+    font-size: 0.95rem;
+  }
+  .menu-card ul:first-of-type li {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu-card {
+    width: 100%;
+    margin: 0 auto 1rem;
+    padding: 0.6rem;
+  }
+  .menu-card h2 {
+    font-size: 1.2rem;
+  }
+  .menu-card .time,
+  .menu-card .location {
+    font-size: 0.9rem;
+  }
+  .menu-card ul li {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .menu-card {
+    width: 100%;
+    padding: 0.5rem;
+  }
+  .menu-card h2 {
+    font-size: 1.1rem;
+  }
+  .menu-card .time,
+  .menu-card .location {
+    font-size: 0.85rem;
+  }
+  .menu-card ul li {
+    font-size: 0.9rem;
+  }
+}

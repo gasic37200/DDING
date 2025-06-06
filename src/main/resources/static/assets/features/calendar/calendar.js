@@ -11,15 +11,21 @@ export function initCalendar() {
 function renderCalendar(currentDate, selectedDate) {
     const container = document.getElementById("main-content");
     container.innerHTML = `
-    <div class="calendar-container">
-      <div class="calendar-header">
-        <button id="prev-month">&lt;</button>
-        <span id="calendar-month">${currentDate.getFullYear()}년 ${currentDate.getMonth() + 1}월</span>
+         <div class="container">
+       <!-- 왼쪽: 달력 -->
+       <div class="left-side">
+         <div class="calendar-container">
+              <div class="calendar-header">
+                <button id="prev-month">&lt;</button>
+                <span id="calendar-month">${currentDate.getFullYear()}년 ${currentDate.getMonth() + 1}월</span>
         <button id="next-month">&gt;</button>
       </div>
-      <table class="calendar-table" id="calendar-table"></table>
-    </div>
-    <div id="menu-card"></div>
+      <table class="calendar" id="calendar-table"></table>
+         </div>
+       </div>
+       <!-- 오른쪽: 메뉴 카드 -->
+       <div class="menu-card" id="menu-card"></div>
+     </div>
   `;
 
     // 이전 달
@@ -58,7 +64,7 @@ function renderDates(currentDate, selectedDate) {
         const thisDate = new Date(year, month, d);
         const isToday = thisDate.toDateString() === new Date().toDateString();
         const isSelected = thisDate.toDateString() === selectedDate.toDateString();
-        html += `<td class="${isToday ? "today" : ""} ${isSelected ? "selected" : ""}" data-date="${thisDate}">${d}</td>`;
+         html += `<td class="${isToday ? "today" : ""} ${isSelected ? "selected" : ""}" data-date="${thisDate.toISOString()}">${d}</td>`;
         dayCount++;
         if (dayCount % 7 === 0) html += "</tr><tr>";
     }

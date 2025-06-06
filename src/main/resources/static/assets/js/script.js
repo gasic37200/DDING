@@ -141,14 +141,9 @@ function showMain() {
         </div>
         <table class="calendar" id="calendar-table"></table>
       </div>
-
-      <div class="button-group">
-        <button class="btn">☰ 내가 쓴 글</button>
-        <button class="btn btn-primary">게시판 글쓰기</button>
-      </div>
     </div>
 
-    <div class="meal-card" id="meal-card"></div>
+    <div class="menu-card" id="menu-card"></div>
   `;
 
   //  월 변경 버튼 동작
